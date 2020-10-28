@@ -1,0 +1,19 @@
+/*0*/
+SELECT * INTO Film1 
+FROM Film WHERE Film_time >100
+
+SELECT * INTO Film2
+FROM Film WHERE Film_time>130
+
+/*1*/
+SELECT * FROM Film1
+UNION SELECT * FROM Film2
+/*2*/
+SELECT * FROM Film1
+INTERSECT
+SELECT * FROM Film2
+/*3*/
+SeLect * FROM Film1
+WHERE Id_film NOT IN(SELECT Id_film FROM Film2)
+/*4*/
+SELECT * FROM Film1,Film2
