@@ -1,10 +1,9 @@
-USE Movie_rental
 /*1*/
 CREATE FUNCTION Encription (@Film_name char(50))
-RETURNS char(50)
+RETURNS varbinary(max)
 BEGIN  
-    DECLARE @Result char(50)  
-    SET @Result = EncryptByPassPhrase('12',@Film_name) 
+    DECLARE @Result varbinary(max)  
+    SET @Result = EncryptByPassPhrase('passphrase',@Film_name) 
     RETURN @Result  
 END
 
@@ -14,9 +13,11 @@ CREATE FUNCTION Decription (@Value_for_decription char(50))
 RETURNS char(50)
 BEGIN  
     DECLARE @Film_name char(50)  
-    SET @Film_name = DecryptByPassPhrase('12',@Value_for_decription)
+    SET @Film_name = DecryptByPassPhrase('passphrase',@Value_for_decription)
     RETURN @Film_name  
 END
+
+SELECT Encription Film_name FROM Film; 
 
 /*2*/
 CREATE PROCEDURE Film_studio_films (@date1 datetime,@date2 datetime)
